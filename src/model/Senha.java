@@ -21,7 +21,7 @@ public class Senha implements Serializable{
     @Id
     @GeneratedValue
     private int id;
-    private String numero;
+    private int numero;
     private Date criacao;
     
     @ManyToOne
@@ -30,7 +30,7 @@ public class Senha implements Serializable{
     public Senha() {
     }
 
-    public Senha(int id, String numero, Date criacao, Fila fila) {
+    public Senha(int id, int numero, Date criacao, Fila fila) {
         this.id = id;
         this.numero = numero;
         this.criacao = criacao;
@@ -45,11 +45,11 @@ public class Senha implements Serializable{
         this.id = id;
     }
 
-    public String getNumero() {
+    public int getNumero() {
         return numero;
     }
 
-    public void setNumero(String numero) {
+    public void setNumero(int numero) {
         this.numero = numero;
     }
 
@@ -68,7 +68,6 @@ public class Senha implements Serializable{
     public void setFila(Fila fila) {
         this.fila = fila;
     }
-    
-    
+
     
 }

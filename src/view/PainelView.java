@@ -4,19 +4,6 @@
  */
 package view;
 
-import controller.FilaController;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.GridLayout;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import model.Fila;
-
 /**
  *
  * @author jpescola
@@ -24,46 +11,10 @@ import model.Fila;
 public class PainelView extends javax.swing.JFrame {
 
     /**
-     * Creates new form Painel
+     * Creates new form PainelView1
      */
     public PainelView() {
         initComponents();
-
-        // configurações da janela do painel
-        setExtendedState(JFrame.MAXIMIZED_BOTH); // janela maximizada
-        getContentPane().setBackground(Color.black); // background 
-        setLayout(new GridLayout(1, 2));
-
-        // imagem da festa
-        lblImagem.setText("");
-        lblImagem.setIcon(new ImageIcon("img/logo.jpg"));
-        lblImagem.setHorizontalAlignment(JLabel.CENTER);
-//        setLayout(new FlowLayout()); 
-
-//        JButton b = new JButton("teste");
-//        add(new JButton("teste"));
-//        add(new JLabel("bbb"));
-        // carrega o combo de filas
-        List<Fila> filas = new FilaController().listar();
-        Set<String> a = new HashSet<>();
-        for (Fila i : filas) {
-            String v = i.getTipo().getNome();
-            if (!a.contains(v)){
-                JButton b = new JButton(v);
-                b.setFont(new Font("Arial", Font.PLAIN, 60));
-
-    //             b.setPreferredSize(new Dimension (200, 100)); 
-    //             b.setMargin(new Insets(100,0,0,0));
-    //            b.setText("adaf");
-    //            add(b);
-    //          painel.setLayout(new GridLayout(filas.size(), 1)); 
-                painel.setLayout(new GridLayout(4, 2, 20, 20));
-                painel.setBackground(Color.black); // background 
-    //          painel.setSize(new Dimension(100,100));
-                painel.add(b);
-            }
-            a.add(v);
-        }
     }
 
     /**
@@ -75,26 +26,40 @@ public class PainelView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        painel = new javax.swing.JPanel();
-        lblImagem = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(0, 0, 0));
 
-        painel.setBackground(new java.awt.Color(0, 204, 204));
+        jLabel1.setFont(new java.awt.Font("Liberation Sans", 0, 24)); // NOI18N
+        jLabel1.setText("Últimas chamadas:");
 
-        javax.swing.GroupLayout painelLayout = new javax.swing.GroupLayout(painel);
-        painel.setLayout(painelLayout);
-        painelLayout.setHorizontalGroup(
-            painelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 425, Short.MAX_VALUE)
-        );
-        painelLayout.setVerticalGroup(
-            painelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 424, Short.MAX_VALUE)
-        );
+        jLabel2.setFont(new java.awt.Font("Liberation Sans", 0, 48)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel2.setText("Caixa:");
 
-        lblImagem.setText("Image");
+        jList1.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "RP001", "RN001", "CN002", "CN001" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(jList1);
+
+        jLabel3.setFont(new java.awt.Font("Liberation Sans", 0, 100)); // NOI18N
+        jLabel3.setText("RP001");
+
+        jLabel4.setFont(new java.awt.Font("Liberation Sans", 0, 48)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel4.setText("Senha:");
+
+        jLabel5.setFont(new java.awt.Font("Liberation Sans", 0, 100)); // NOI18N
+        jLabel5.setText("1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -103,22 +68,42 @@ public class PainelView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblImagem)
-                    .addComponent(painel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(349, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2)
+                        .addGap(196, 196, 196))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 189, Short.MAX_VALUE)
+                        .addComponent(jLabel5)
+                        .addGap(276, 276, 276))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblImagem)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(painel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(234, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel5))
+                .addGap(60, 60, 60)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
@@ -158,7 +143,12 @@ public class PainelView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel lblImagem;
-    private javax.swing.JPanel painel;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JList<String> jList1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

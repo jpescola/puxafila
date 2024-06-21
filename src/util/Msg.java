@@ -4,6 +4,8 @@
  */
 package util;
 
+import java.awt.Font;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -29,6 +31,18 @@ public abstract class Msg {
 
     public static void sobre() {
         JOptionPane.showMessageDialog(null, sobre);
+    }
+
+    public static void info(String s) {
+        JOptionPane.showMessageDialog(null, s);
+    }
+
+    public static void infoSenha(String s) {
+        JLabel label = new JLabel(s);
+        label.setFont(new Font("Arial", Font.BOLD, 58));
+        JOptionPane.showMessageDialog(null,label,titulo,JOptionPane.INFORMATION_MESSAGE);
+
+//        JOptionPane.showMessageDialog(null, s);
     }
 
 }

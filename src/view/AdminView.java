@@ -132,7 +132,7 @@ public class AdminView extends javax.swing.JFrame {
 
     private void btnPainelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPainelActionPerformed
         Label a = new Label("aaa");
-        PainelView p = new PainelView();
+        QuiosqueView p = new QuiosqueView();
         p.add(a);
         p.setVisible(true);
     }//GEN-LAST:event_btnPainelActionPerformed

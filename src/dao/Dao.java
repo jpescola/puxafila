@@ -62,7 +62,7 @@ public class Dao<T> {
         return true;
     }
     
-    public List<T> listar(Class c, String campo, String valor) {
+    public List<T> listar(Class c, String campo, T valor) {
         List<T> lista = null;
         try {
             manager.getTransaction().begin();
@@ -70,7 +70,11 @@ public class Dao<T> {
             CriteriaQuery<T> criteria = builder.createQuery(c);
             Root<T> root = criteria.from(c);
             criteria.select(root);
-            criteria.where(builder.like(root.get(campo), "%"+valor+"%"));
+            if (valor.getClass() == String.class) {
+                criteria.where(builder.like(root.get(campo), "%" + valor + "%"));
+            } else {
+                criteria.where(builder.equal(root.get(campo), valor));
+            }
             lista = manager.createQuery(criteria).getResultList();            
             manager.getTransaction().commit();
         } catch (Exception e) {
@@ -79,6 +83,22 @@ public class Dao<T> {
         return lista;
     }
     
+        public List<T> listar(Class c) {
+        List<T> lista = null;
+        try {
+            manager.getTransaction().begin();
+            CriteriaBuilder builder = manager.getCriteriaBuilder();
+            CriteriaQuery<T> criteria = builder.createQuery(c);
+            Root<T> root = criteria.from(c);
+            criteria.select(root);
+            lista = manager.createQuery(criteria).getResultList();
+            manager.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return lista;
+    }
+        
     public T get(Class c, int id){
         manager.getTransaction().begin();
         T t = (T)manager.find(c, id);

@@ -32,6 +32,14 @@ public class Controller<T> {
         return dao.listar(c, campo, valor);
     }
     
+    public List<T> listar(Class c, String campo, int valor) {
+        return dao.listar(c, campo, valor);
+    }
+
+    public List<T> listar(Class c) {
+        return dao.listar(c);
+    }
+    
     public T get(Class c, int id){
         return (T)dao.get(c, id);
     }
