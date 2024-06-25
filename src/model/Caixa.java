@@ -14,7 +14,7 @@ import javax.persistence.ManyToOne;
  * @author jpescola
  */
 @Entity
-public class Caixa implements Serializable{
+public class Caixa implements Serializable{    
     @Id
     @GeneratedValue
     private int id;

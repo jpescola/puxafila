@@ -10,20 +10,14 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import model.Fila;
-import model.Senha;
 
 /**
  *
@@ -46,11 +40,7 @@ public class QuiosqueView extends javax.swing.JFrame {
         lblImagem.setText("");
         lblImagem.setIcon(new ImageIcon("img/logo.jpg"));
         lblImagem.setHorizontalAlignment(JLabel.CENTER);
-//        setLayout(new FlowLayout()); 
 
-//        JButton b = new JButton("teste");
-//        add(new JButton("teste"));
-//        add(new JLabel("bbb"));
         // carrega o combo de filas
         List<Fila> filas = new FilaController().listar();
         Set<String> a = new HashSet<>();
@@ -60,20 +50,13 @@ public class QuiosqueView extends javax.swing.JFrame {
                 JButton b = new JButton(v);
                 b.setFont(new Font("Arial", Font.PLAIN, 60));
                 b.addActionListener((ActionEvent e) -> {
-                    String novaSenha = "" + i.getTipo().getNome().charAt(0) + i.getNome().charAt(0) + new SenhaController().gerar(i);
-//                    util.Msg.infoSenha(novaSenha);
+                    String novaSenha = i.getPrefixoSenha() + new SenhaController().gerar(i);
                     new PrintView(novaSenha).setVisible(true);
                     
                 });
 
-                //             b.setPreferredSize(new Dimension (200, 100)); 
-                //             b.setMargin(new Insets(100,0,0,0));
-                //            b.setText("adaf");
-                //            add(b);
-                //          painel.setLayout(new GridLayout(filas.size(), 1)); 
                 painel.setLayout(new GridLayout(4, 2, 20, 20));
                 painel.setBackground(Color.black); // background 
-                //          painel.setSize(new Dimension(100,100));
                 painel.add(b);
             }
             a.add(v);

@@ -62,6 +62,23 @@ public class Dao<T> {
         return true;
     }
     
+    public List<T> listarNulos(Class c, String campo) {
+        List<T> lista = null;
+        try {
+            manager.getTransaction().begin();
+            CriteriaBuilder builder = manager.getCriteriaBuilder();
+            CriteriaQuery<T> criteria = builder.createQuery(c);
+            Root<T> root = criteria.from(c);
+            criteria.select(root);
+            criteria.where(builder.isNull(root.get(campo)));
+            lista = manager.createQuery(criteria).getResultList();            
+            manager.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }        
+        return lista;
+    }
+    
     public List<T> listar(Class c, String campo, T valor) {
         List<T> lista = null;
         try {
@@ -83,7 +100,7 @@ public class Dao<T> {
         return lista;
     }
     
-        public List<T> listar(Class c) {
+    public List<T> listar(Class c) {
         List<T> lista = null;
         try {
             manager.getTransaction().begin();

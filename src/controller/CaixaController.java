@@ -35,4 +35,11 @@ public class CaixaController extends Controller<Caixa>{
     public List<Caixa> listar() {
         return super.listar(Caixa.class, "nome", ""); 
     }
+
+    public Caixa acesso(String login, String senha) {
+        for (Caixa c : buscar("login", login))
+            if (c.getSenha().equals(senha))
+                return c;
+        return null;
+    }
 }

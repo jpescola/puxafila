@@ -10,40 +10,30 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-
 /**
  *
  * @author jpescola
  */
 @Entity
-public class Senha implements Serializable {
-
+public class Login implements Serializable{    
     @Id
     @GeneratedValue
     private int id;
-    private int numero;
     private Date criacao;
-    private Date atendimento;
-    
+    private String pc;
+    private String ip;
     @ManyToOne
     private Caixa caixa;
 
-    @ManyToOne
-    private Fila fila;
-
-    public Senha() {
+    public Login() {
     }
 
-    public Senha(int id, int numero, Date criacao, Fila fila) {
+    public Login(int id, Date criacao, String pc, String ip, Caixa caixa) {
         this.id = id;
-        this.numero = numero;
         this.criacao = criacao;
-        this.fila = fila;
-    }
-
-    @Override
-    public String toString() {
-        return fila.getPrefixoSenha() + numero;
+        this.pc = pc;
+        this.ip = ip;
+        this.caixa = caixa;
     }
 
     public int getId() {
@@ -54,14 +44,6 @@ public class Senha implements Serializable {
         this.id = id;
     }
 
-    public int getNumero() {
-        return numero;
-    }
-
-    public void setNumero(int numero) {
-        this.numero = numero;
-    }
-
     public Date getCriacao() {
         return criacao;
     }
@@ -70,20 +52,20 @@ public class Senha implements Serializable {
         this.criacao = criacao;
     }
 
-    public Fila getFila() {
-        return fila;
+    public String getPc() {
+        return pc;
     }
 
-    public void setFila(Fila fila) {
-        this.fila = fila;
+    public void setPc(String pc) {
+        this.pc = pc;
     }
 
-    public Date getAtendimento() {
-        return atendimento;
+    public String getIp() {
+        return ip;
     }
 
-    public void setAtendimento(Date atendimento) {
-        this.atendimento = atendimento;
+    public void setIp(String ip) {
+        this.ip = ip;
     }
 
     public Caixa getCaixa() {
@@ -93,7 +75,6 @@ public class Senha implements Serializable {
     public void setCaixa(Caixa caixa) {
         this.caixa = caixa;
     }
-    
-    
 
+    
 }

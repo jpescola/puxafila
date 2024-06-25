@@ -40,9 +40,19 @@ public abstract class Msg {
     public static void infoSenha(String s) {
         JLabel label = new JLabel(s);
         label.setFont(new Font("Arial", Font.BOLD, 58));
-        JOptionPane.showMessageDialog(null,label,titulo,JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, label, titulo, JOptionPane.INFORMATION_MESSAGE);
+    }
 
-//        JOptionPane.showMessageDialog(null, s);
+    public static boolean confirmar(String s) {
+        return JOptionPane.showConfirmDialog(null, s, titulo, JOptionPane.QUESTION_MESSAGE) == 1;
+    }
+
+    public static boolean confirmarAtendimento(String senha) {
+        return JOptionPane.showConfirmDialog(null, "Confirma atendimento da senha " + senha + "?", titulo, JOptionPane.YES_NO_OPTION) == 0;
+    }
+
+    public static void erroLogin() {
+        JOptionPane.showMessageDialog(null, "Usuário e/ou Senha incorreto(s)", titulo, JOptionPane.ERROR_MESSAGE);
     }
 
 }

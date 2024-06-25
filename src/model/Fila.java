@@ -24,6 +24,10 @@ public class Fila implements Serializable {
     private int prioridade;
     @ManyToOne
     private Tipo tipo;
+    
+    public String getPrefixoSenha(){
+        return "" + this.getTipo().getNome().charAt(0) + this.getNome().charAt(0);
+    }
 
     public Fila() {
     }

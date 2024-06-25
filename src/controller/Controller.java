@@ -36,6 +36,10 @@ public class Controller<T> {
         return dao.listar(c, campo, valor);
     }
 
+    public List<T> listarNulos(Class c, String campo) {
+        return dao.listarNulos(c, campo);
+    }
+
     public List<T> listar(Class c) {
         return dao.listar(c);
     }
