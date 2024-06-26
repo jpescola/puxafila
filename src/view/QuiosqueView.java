@@ -51,7 +51,7 @@ public class QuiosqueView extends javax.swing.JFrame {
                 b.setFont(new Font("Arial", Font.PLAIN, 60));
                 b.addActionListener((ActionEvent e) -> {
                     String novaSenha = i.getPrefixoSenha() + new SenhaController().gerar(i);
-                    new PrintView(novaSenha).setVisible(true);
+                    new NotificacaoView(novaSenha).setVisible(true);
                     
                 });
 

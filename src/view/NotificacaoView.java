@@ -4,24 +4,53 @@
  */
 package view;
 
-import java.util.TimerTask;
-import java.util.concurrent.TimeUnit;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import javax.swing.Timer;
 
 /**
  *
  * @author jpescola
  */
-public class PrintView extends javax.swing.JFrame {
+public class NotificacaoView extends javax.swing.JFrame {
 
     /**
      * Creates new form PrintView
+     *
      * @param senha
      */
-    public PrintView(String senha) {
+    public NotificacaoView(String senha) {
+        this(senha, true);
+    }
+
+    public NotificacaoView(String senha, boolean centralizar) {
         initComponents();
+        setAlwaysOnTop(true);
+        
         txtSenha.setText(senha);
-        new Timer(3_000, (se) -> { this.setVisible(false); this.dispose(); }).start();
+        
+        // posição da janela na tela
+        if (centralizar) {
+            setLocationRelativeTo(null); // centralizar
+        } else {
+            GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+            int width = gd.getDisplayMode().getWidth();
+            int height = gd.getDisplayMode().getHeight();
+            setLocation((width * 4), (height - 0)); // canto inferior direito da tela
+            util.Som.notificacao(); // som da notificação
+        }
+        
+        // fechar a janela após tempo
+        new Timer(3_000, (se) -> {
+            this.setVisible(false);
+            this.dispose();
+        }).start();
+    }
+    
+    public void setNotificacaoSenha(String s){
+        txtTitulo.setText(s);
+        txtMensagem.setText("Nova Senha Gerada!");
+        txtSenha.setText(s);
     }
 
     /**
@@ -33,20 +62,21 @@ public class PrintView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtAguarde = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        txtTitulo = new javax.swing.JLabel();
+        txtMensagem = new javax.swing.JLabel();
         txtSenha = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setAlwaysOnTop(true);
         setUndecorated(true);
 
-        txtAguarde.setFont(new java.awt.Font("Liberation Sans", 0, 48)); // NOI18N
-        txtAguarde.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtAguarde.setText("Aguarde...");
+        txtTitulo.setFont(new java.awt.Font("Liberation Sans", 0, 48)); // NOI18N
+        txtTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtTitulo.setText("Aguarde...");
 
-        jLabel2.setFont(new java.awt.Font("Liberation Sans", 0, 36)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Imprimindo sua senha");
+        txtMensagem.setFont(new java.awt.Font("Liberation Sans", 0, 36)); // NOI18N
+        txtMensagem.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtMensagem.setText("Imprimindo sua senha");
 
         txtSenha.setText("jLabel1");
 
@@ -57,8 +87,8 @@ public class PrintView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtAguarde, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE)
+                    .addComponent(txtTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtMensagem, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(txtSenha)))
@@ -68,16 +98,15 @@ public class PrintView extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtAguarde, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
+                .addComponent(txtMensagem)
                 .addGap(31, 31, 31)
                 .addComponent(txtSenha)
                 .addContainerGap())
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
@@ -97,30 +126,29 @@ public class PrintView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PrintView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NotificacaoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PrintView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NotificacaoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PrintView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NotificacaoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PrintView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NotificacaoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PrintView("aaa").setVisible(true);
+                new NotificacaoView("aaa").setVisible(true);
             }
         });
-        
-//                            new Timer(10_000, (se) -> { pv.setVisible(false); pv.dispose(); }).start();
 
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel txtAguarde;
+    private javax.swing.JLabel txtMensagem;
     private javax.swing.JLabel txtSenha;
+    private javax.swing.JLabel txtTitulo;
     // End of variables declaration//GEN-END:variables
 }

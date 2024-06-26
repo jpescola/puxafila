@@ -16,7 +16,7 @@ import util.Msg;
  * @author jpescola
  */
 public class LoginView extends javax.swing.JFrame {
-    
+
     private Login login = null;
 
     /**

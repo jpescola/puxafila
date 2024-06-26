@@ -21,7 +21,9 @@ import util.Msg;
 public class AtendimentoView extends javax.swing.JFrame {
 
     private Caixa caixa = null;
-    
+    private int n = -1;
+    private NotificacaoView v = null;
+
     private final String[] colunas = {"Senha", "Data", "Fila"};
 
     private Senha senha = new Senha(); // objeto default
@@ -36,9 +38,30 @@ public class AtendimentoView extends javax.swing.JFrame {
 
         tblDados.setDefaultEditor(Object.class, null); // desativa edição
         caixa = LoginController.getInstance().getCaixa();
-        
-        atualizar();
+
+        new Thread(t1).start();
+
     }
+
+    // notifica em caso de nova senha gerada
+    private final Runnable t1 = new Runnable() {
+        public void run() {
+            try {
+
+                while (true) {
+
+                    senhas = con.listarAbertas(); // atualiza o arraylist com o bd
+                    if (senhas.size() > n) {
+                        atualizar();
+                    }
+                    Thread.sleep(10000);
+                }
+
+            } catch (Exception e) {
+            }
+
+        }
+    };
 
     private void atualizar() {
 
@@ -46,19 +69,29 @@ public class AtendimentoView extends javax.swing.JFrame {
         DefaultTableModel m = new DefaultTableModel();
         // define os nomes das colunas
         m.setColumnIdentifiers(colunas);
+
         // laço para recuperar cada linha do modelo atual
         senhas = con.listarAbertas(); // atualiza o arraylist com o bd
         for (Senha e : senhas) {
-            m.addRow(new String[]{e.getFila().getPrefixoSenha()+e.getNumero(), util.Data.dateToString(e.getCriacao()), e.getFila().getTipo().getNome()});
+            m.addRow(new String[]{e.getFila().getPrefixoSenha() + e.getNumero(), util.Data.dateToString(e.getCriacao()), e.getFila().getTipo().getNome()});
         }
         // ativo o novo modelo
         tblDados.setModel(m);
 
+        if (n != -1) { // não notificar ao iniciar a tela atual
+            Senha s = senhas.get(senhas.size() - 1);
+            v = new NotificacaoView("", false);
+            v.setNotificacaoSenha("" + s.getFila().getPrefixoSenha() + s.getNumero());
+            v.setVisible(true);
+        }
+
         limpar();
 
+        n = senhas.size();
+
     }
-    
-        private void limpar() {
+
+    private void limpar() {
         senha = new Senha();
 
     }
@@ -162,25 +195,25 @@ public class AtendimentoView extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void atender() {
-        
+
         // busca o índice da linha selecionada
         int i_senha = tblDados.getSelectedRow();
         // busca o cliente correspondente ao índice selecionado na tabela
         senha = senhas.get(i_senha);
-        
+
         // confirma atendimento
-        if (Msg.confirmarAtendimento(senha.toString())){
-            
+        if (Msg.confirmarAtendimento(senha.toString())) {
+
             // registra o atendimento
             senha.setAtendimento(new Date());
             senha.setCaixa(caixa);
             con.salvar(senha);
-            
+
             // limpa a lista
             senhas.remove(i_senha);
             atualizar();
-            
+
         }
-        
+
     }
 }
