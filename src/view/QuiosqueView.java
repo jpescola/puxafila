@@ -52,7 +52,7 @@ public class QuiosqueView extends javax.swing.JFrame {
                 b.addActionListener((ActionEvent e) -> {
                     String novaSenha = i.getPrefixoSenha() + new SenhaController().gerar(i);
                     new NotificacaoView(novaSenha).setVisible(true);
-                    
+
                 });
 
                 painel.setLayout(new GridLayout(4, 2, 20, 20));

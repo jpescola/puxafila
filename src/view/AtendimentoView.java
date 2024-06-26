@@ -9,6 +9,7 @@ import controller.SenhaController;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 import model.Caixa;
 import model.Senha;
@@ -35,6 +36,7 @@ public class AtendimentoView extends javax.swing.JFrame {
      */
     public AtendimentoView() {
         initComponents();
+//        setIconImage(new ImageIcon(getClass().getResource("/icons/Add_16x16.png")).getImage());
 
         tblDados.setDefaultEditor(Object.class, null); // desativa edição
         caixa = LoginController.getInstance().getCaixa();
@@ -50,11 +52,11 @@ public class AtendimentoView extends javax.swing.JFrame {
 
                 while (true) {
 
-                    senhas = con.listarAbertas(); // atualiza o arraylist com o bd
+                    senhas = con.listarAbertas(caixa); // atualiza o arraylist com o bd
                     if (senhas.size() > n) {
                         atualizar();
                     }
-                    Thread.sleep(10000);
+                    Thread.sleep(3000);
                 }
 
             } catch (Exception e) {
@@ -71,7 +73,7 @@ public class AtendimentoView extends javax.swing.JFrame {
         m.setColumnIdentifiers(colunas);
 
         // laço para recuperar cada linha do modelo atual
-        senhas = con.listarAbertas(); // atualiza o arraylist com o bd
+        senhas = con.listarAbertas(caixa); // atualiza o arraylist com o bd
         for (Senha e : senhas) {
             m.addRow(new String[]{e.getFila().getPrefixoSenha() + e.getNumero(), util.Data.dateToString(e.getCriacao()), e.getFila().getTipo().getNome()});
         }
@@ -211,6 +213,7 @@ public class AtendimentoView extends javax.swing.JFrame {
 
             // limpa a lista
             senhas.remove(i_senha);
+            n = -1;
             atualizar();
 
         }
