@@ -18,6 +18,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import model.Fila;
+import model.Senha;
 
 /**
  *
@@ -50,9 +51,10 @@ public class QuiosqueView extends javax.swing.JFrame {
                 JButton b = new JButton(v);
                 b.setFont(new Font("Arial", Font.PLAIN, 60));
                 b.addActionListener((ActionEvent e) -> {
-                    String novaSenha = i.getPrefixoSenha() + new SenhaController().gerar(i);
+                    Senha s = new SenhaController().gerar(i);
+                    String novaSenha = i.getPrefixoSenha() + s.getNumero();
                     new NotificacaoView(novaSenha).setVisible(true);
-
+                    util.Impressao.imprimirSenha(s); // imprime na impressora padrão
                 });
 
                 painel.setLayout(new GridLayout(4, 2, 20, 20));

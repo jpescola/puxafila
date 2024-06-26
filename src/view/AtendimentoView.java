@@ -9,7 +9,6 @@ import controller.SenhaController;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 import model.Caixa;
 import model.Senha;

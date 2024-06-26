@@ -58,7 +58,7 @@ public class SenhaController extends Controller<Senha> {
         return r;
     }
 
-    public int gerar(Fila fila) {
+    public Senha gerar(Fila fila) {
         int s = 1;
         List<Senha> lista = listar(fila);
 
@@ -66,7 +66,8 @@ public class SenhaController extends Controller<Senha> {
             Senha ultima = lista.get(lista.size() - 1);
             s = ultima.getNumero() + 1;
         }
-        salvar(new Senha(0, s, new Date(), fila)); // cria uma nova senha
-        return s;
+        Senha senha = new Senha(0, s, new Date(), fila);
+        salvar(senha); // cria uma nova senha
+        return senha;
     }
 }
