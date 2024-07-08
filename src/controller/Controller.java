@@ -40,6 +40,10 @@ public class Controller<T> {
         return dao.listarNulos(c, campo);
     }
 
+    public List<T> listarNaoNulos(Class c, String campo, String order) {
+        return dao.listarNaoNulos(c, campo, order);
+    }
+
     public List<T> listar(Class c) {
         return dao.listar(c);
     }

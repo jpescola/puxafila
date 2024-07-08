@@ -3,29 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/jpescola/NetBeansProjects/PuxaFila/src/view/QuiosqueView.java</file>
-            <file>file:/home/jpescola/NetBeansProjects/PuxaFila/src/util/Msg.java</file>
-            <file>file:/home/jpescola/NetBeansProjects/PuxaFila/src/dao/Dao.java</file>
-            <file>file:/home/jpescola/NetBeansProjects/PuxaFila/src/model/Login.java</file>
-            <file>file:/home/jpescola/NetBeansProjects/PuxaFila/src/model/Caixa.java</file>
-            <file>file:/home/jpescola/NetBeansProjects/PuxaFila/src/view/PainelView.java</file>
-            <file>file:/home/jpescola/NetBeansProjects/PuxaFila/src/view/CaixaView.java</file>
-            <file>file:/home/jpescola/NetBeansProjects/PuxaFila/src/util/Number.java</file>
-            <file>file:/home/jpescola/NetBeansProjects/PuxaFila/src/controller/LoginController.java</file>
-            <file>file:/home/jpescola/NetBeansProjects/PuxaFila/src/model/Tipo.java</file>
-            <file>file:/home/jpescola/NetBeansProjects/PuxaFila/src/util/Som.java</file>
-            <file>file:/home/jpescola/NetBeansProjects/PuxaFila/src/view/AdminView.java</file>
-            <file>file:/home/jpescola/NetBeansProjects/PuxaFila/src/model/Senha.java</file>
             <file>file:/home/jpescola/NetBeansProjects/PuxaFila/src/controller/SenhaController.java</file>
-            <file>file:/home/jpescola/NetBeansProjects/PuxaFila/src/util/Net.java</file>
-            <file>file:/home/jpescola/NetBeansProjects/PuxaFila/src/model/Fila.java</file>
-            <file>file:/home/jpescola/NetBeansProjects/PuxaFila/src/controller/CaixaController.java</file>
+            <file>file:/home/jpescola/NetBeansProjects/PuxaFila/src/view/QuiosqueView.java</file>
             <file>file:/home/jpescola/NetBeansProjects/PuxaFila/src/controller/Controller.java</file>
-            <file>file:/home/jpescola/NetBeansProjects/PuxaFila/src/view/TipoView.java</file>
+            <file>file:/home/jpescola/NetBeansProjects/PuxaFila/src/dao/Dao.java</file>
             <file>file:/home/jpescola/NetBeansProjects/PuxaFila/src/view/AtendimentoView.java</file>
-            <file>file:/home/jpescola/NetBeansProjects/PuxaFila/src/view/NotificacaoView.java</file>
-            <file>file:/home/jpescola/NetBeansProjects/PuxaFila/src/view/LoginView.java</file>
-            <file>file:/home/jpescola/NetBeansProjects/PuxaFila/src/view/FilaView.java</file>
+            <file>file:/home/jpescola/NetBeansProjects/PuxaFila/src/view/PainelView.java</file>
+            <file>file:/home/jpescola/NetBeansProjects/PuxaFila/src/util/Som.java</file>
         </group>
     </open-files>
 </project-private>

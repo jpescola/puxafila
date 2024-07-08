@@ -44,6 +44,10 @@ public class SenhaController extends Controller<Senha> {
         return super.listar(Senha.class, "fila", fila.getId());
     }
 
+    public List<Senha> listarUltimasChamadas() {
+        return super.listarNaoNulos(Senha.class, "atendimento", "desc");
+    }
+    
     public List<Senha> listarAbertas(Caixa caixa) {
         List<Senha> lista = super.listarNulos(Senha.class, "atendimento");
         List<Senha> r = new ArrayList<>();

@@ -10,6 +10,7 @@ import javax.persistence.criteria.Root;
 
 /**
  * Dao genérico Hibernate
+ *
  * @author jpescola
  * @param <T>
  */
@@ -23,7 +24,7 @@ public class Dao<T> {
         factory = Persistence.createEntityManagerFactory("ExemploPU");
         manager = factory.createEntityManager();
     }
-    
+
     public static Dao getIntance() {
         if (instance == null) {
             instance = new Dao();
@@ -49,7 +50,7 @@ public class Dao<T> {
         }
         return true;
     }
-    
+
     public boolean excluir(T t) {
         try {
             manager.getTransaction().begin();
@@ -61,7 +62,29 @@ public class Dao<T> {
         }
         return true;
     }
-    
+
+    public List<T> listarNaoNulos(Class c, String campo, String order) {
+        List<T> lista = null;
+        try {
+            manager.getTransaction().begin();
+            CriteriaBuilder builder = manager.getCriteriaBuilder();
+            CriteriaQuery<T> criteria = builder.createQuery(c);
+            Root<T> root = criteria.from(c);
+            criteria.select(root);
+            criteria.where(builder.isNotNull(root.get(campo)));
+            if (order.equals("desc")) {
+                criteria.orderBy(builder.desc(root.get(campo)));
+            } else {
+                criteria.orderBy(builder.asc(root.get(campo)));
+            }
+            lista = manager.createQuery(criteria).getResultList();
+            manager.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return lista;
+    }
+
     public List<T> listarNulos(Class c, String campo) {
         List<T> lista = null;
         try {
@@ -71,14 +94,14 @@ public class Dao<T> {
             Root<T> root = criteria.from(c);
             criteria.select(root);
             criteria.where(builder.isNull(root.get(campo)));
-            lista = manager.createQuery(criteria).getResultList();            
+            lista = manager.createQuery(criteria).getResultList();
             manager.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
-        }        
+        }
         return lista;
     }
-    
+
     public List<T> listar(Class c, String campo, T valor) {
         List<T> lista = null;
         try {
@@ -92,14 +115,14 @@ public class Dao<T> {
             } else {
                 criteria.where(builder.equal(root.get(campo), valor));
             }
-            lista = manager.createQuery(criteria).getResultList();            
+            lista = manager.createQuery(criteria).getResultList();
             manager.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
-        }        
+        }
         return lista;
     }
-    
+
     public List<T> listar(Class c) {
         List<T> lista = null;
         try {
@@ -115,10 +138,10 @@ public class Dao<T> {
         }
         return lista;
     }
-        
-    public T get(Class c, int id){
+
+    public T get(Class c, int id) {
         manager.getTransaction().begin();
-        T t = (T)manager.find(c, id);
+        T t = (T) manager.find(c, id);
         manager.getTransaction().commit();
         return t;
     }

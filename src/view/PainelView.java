@@ -4,17 +4,74 @@
  */
 package view;
 
+import controller.SenhaController;
+import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JFrame;
+import model.Senha;
+
 /**
  *
  * @author jpescola
  */
 public class PainelView extends javax.swing.JFrame {
 
+    private Senha ultimaChamada = null; // objeto default
+    private Senha ultimaSenha = new Senha(); // objeto default
+    private List<Senha> senhas = new ArrayList<>(); // list para jtable
+    private final SenhaController con = new SenhaController(); // controller
+
     /**
      * Creates new form PainelView1
      */
     public PainelView() {
         initComponents();
+        setExtendedState(JFrame.MAXIMIZED_BOTH); // janela maximizada
+        getContentPane().setBackground(Color.white); // background 
+        new Thread(t1).start();
+    }
+
+    // notifica em caso de nova senha gerada
+    private final Runnable t1 = new Runnable() {
+        public void run() {
+            try {
+
+                while (true) {
+                    senhas = con.listarUltimasChamadas();
+                    ultimaSenha = senhas.get(0);
+                    if (ultimaSenha != ultimaChamada) {
+                        atualizar();
+                        ultimaChamada = ultimaSenha;
+                    }
+                    Thread.sleep(3000);
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+    };
+
+    private void atualizar() {
+
+        // atualiza o painel
+        lblSenha.setText(ultimaSenha.getFila().getPrefixoSenha() + ultimaSenha.getNumero());
+        lblCaixa.setText(ultimaSenha.getCaixa().getNome());
+        if (ultimaChamada != null) {
+            util.Som.notificacao();
+        }
+
+        String r = "<html>";
+        senhas = con.listarUltimasChamadas();
+        for (Senha e : senhas.subList(0, 6)) {
+            r += e.getFila().getPrefixoSenha() + e.getNumero() + " Caixa " + e.getCaixa().getNome() + "<br>";
+        }
+        lblUltimas.setText(r);
+
+        ultimaChamada = senhas.get(0);
+
     }
 
     /**
@@ -28,38 +85,38 @@ public class PainelView extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        jLabel3 = new javax.swing.JLabel();
+        lblSenha = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        lblCaixa = new javax.swing.JLabel();
+        lblUltimas = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
+        setUndecorated(true);
 
-        jLabel1.setFont(new java.awt.Font("Liberation Sans", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Liberation Sans", 0, 45)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Últimas chamadas:");
 
         jLabel2.setFont(new java.awt.Font("Liberation Sans", 0, 48)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(102, 102, 102));
         jLabel2.setText("Caixa:");
 
-        jList1.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "RP001", "RN001", "CN002", "CN001" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
-
-        jLabel3.setFont(new java.awt.Font("Liberation Sans", 0, 100)); // NOI18N
-        jLabel3.setText("RP001");
+        lblSenha.setFont(new java.awt.Font("Liberation Sans", 0, 200)); // NOI18N
+        lblSenha.setText("RP001");
 
         jLabel4.setFont(new java.awt.Font("Liberation Sans", 0, 48)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(102, 102, 102));
         jLabel4.setText("Senha:");
 
-        jLabel5.setFont(new java.awt.Font("Liberation Sans", 0, 100)); // NOI18N
-        jLabel5.setText("1");
+        lblCaixa.setFont(new java.awt.Font("Liberation Sans", 0, 200)); // NOI18N
+        lblCaixa.setForeground(new java.awt.Color(0, 0, 255));
+        lblCaixa.setText("1");
+
+        lblUltimas.setFont(new java.awt.Font("Liberation Sans", 0, 60)); // NOI18N
+        lblUltimas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblUltimas.setText("jLabel6");
+        lblUltimas.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -69,21 +126,20 @@ public class PainelView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel2)
                         .addGap(196, 196, 196))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 189, Short.MAX_VALUE)
-                        .addComponent(jLabel5)
+                        .addComponent(lblSenha)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblCaixa)
                         .addGap(276, 276, 276))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblUltimas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -94,13 +150,13 @@ public class PainelView extends javax.swing.JFrame {
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel5))
+                    .addComponent(lblSenha)
+                    .addComponent(lblCaixa))
                 .addGap(60, 60, 60)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(lblUltimas, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -145,10 +201,9 @@ public class PainelView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblCaixa;
+    private javax.swing.JLabel lblSenha;
+    private javax.swing.JLabel lblUltimas;
     // End of variables declaration//GEN-END:variables
 }
