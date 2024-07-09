@@ -115,7 +115,7 @@ public class PainelView extends javax.swing.JFrame {
 
         lblUltimas.setFont(new java.awt.Font("Liberation Sans", 0, 60)); // NOI18N
         lblUltimas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblUltimas.setText("jLabel6");
+        lblUltimas.setText("...");
         lblUltimas.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

@@ -6,7 +6,7 @@
     <class>model.Fila</class>
     <class>model.Caixa</class>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/puxafila"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/puxafila2"/>
       <property name="javax.persistence.jdbc.user" value="puxafila"/>
       <property name="javax.persistence.jdbc.password" value="puxaf1la"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>

@@ -4,7 +4,9 @@
  */
 package view;
 
+import controller.CaixaController;
 import java.awt.Label;
+import model.Caixa;
 
 /**
  *
@@ -33,6 +35,7 @@ public class AdminView extends javax.swing.JFrame {
         btnCaixas = new javax.swing.JButton();
         btnFilas = new javax.swing.JButton();
         btnPainel = new javax.swing.JButton();
+        btnQuiosque = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("PuxaFila");
@@ -65,6 +68,13 @@ public class AdminView extends javax.swing.JFrame {
             }
         });
 
+        btnQuiosque.setText("Quiosque");
+        btnQuiosque.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQuiosqueActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -77,10 +87,12 @@ public class AdminView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 261, Short.MAX_VALUE)
                         .addComponent(btnCaixas, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnPainel, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnFilas, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(btnFilas, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 536, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnQuiosque, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnPainel, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -93,7 +105,9 @@ public class AdminView extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btnFilas, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
-                .addComponent(btnPainel, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnPainel, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnQuiosque, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -131,11 +145,15 @@ public class AdminView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFilasActionPerformed
 
     private void btnPainelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPainelActionPerformed
+        new PainelView().setVisible(true);
+    }//GEN-LAST:event_btnPainelActionPerformed
+
+    private void btnQuiosqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuiosqueActionPerformed
         Label a = new Label("aaa");
         QuiosqueView p = new QuiosqueView();
         p.add(a);
         p.setVisible(true);
-    }//GEN-LAST:event_btnPainelActionPerformed
+    }//GEN-LAST:event_btnQuiosqueActionPerformed
 
     /**
      * @param args the command line arguments
@@ -167,7 +185,13 @@ public class AdminView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AdminView().setVisible(true);
+                CaixaController con = new CaixaController();
+                if (con.listar().isEmpty()) { // é implantação
+                    con.salvar(new Caixa(0, "admin", "admin", "a d m i n", null)); // cria o admin
+                    new AdminView().setVisible(true);
+                } else {
+                    new LoginView().setVisible(true);
+                }
             }
         });
     }
@@ -176,6 +200,7 @@ public class AdminView extends javax.swing.JFrame {
     private javax.swing.JButton btnCaixas;
     private javax.swing.JButton btnFilas;
     private javax.swing.JButton btnPainel;
+    private javax.swing.JButton btnQuiosque;
     private javax.swing.JButton btnTipos;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables

@@ -24,7 +24,7 @@ public class LoginView extends javax.swing.JFrame {
      */
     public LoginView() {
         initComponents();
-        
+
     }
 
     /**
@@ -49,11 +49,8 @@ public class LoginView extends javax.swing.JFrame {
 
         jLabel1.setText("Login:");
 
-        txtLogin.setText("a");
-
         jLabel2.setText("Senha:");
 
-        txtSenha.setText("a");
         txtSenha.setToolTipText("");
 
         jLabel3.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
@@ -166,7 +163,11 @@ public class LoginView extends javax.swing.JFrame {
         if (caixa != null) {
             login = LoginController.getInstance(caixa);
             this.dispose();
-            new AtendimentoView().setVisible(true);
+            if (caixa.getFila() != null) {
+                new AtendimentoView().setVisible(true);
+            } else {
+                new AdminView().setVisible(true);
+            }
         } else {
             Msg.erroLogin();
         }

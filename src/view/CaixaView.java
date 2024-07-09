@@ -74,6 +74,7 @@ public class CaixaView extends javax.swing.JFrame {
 
         txtNome.setText("");
         txtLogin.setText("");
+        txtSenha.setText("");
         caixa = new Caixa();
         btnExcluir.setEnabled(false);
         

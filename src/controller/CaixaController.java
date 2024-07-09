@@ -12,34 +12,36 @@ import model.Caixa;
  *
  * @author jpescola
  */
-public class CaixaController extends Controller<Caixa>{
+public class CaixaController extends Controller<Caixa> {
 
     @Override
     public boolean salvar(Caixa t) {
-        return super.salvar(t); 
+        return super.salvar(t);
     }
 
     @Override
     public boolean excluir(Caixa t) {
-        return super.excluir(t); 
+        return super.excluir(t);
     }
-    
+
     public List<Caixa> buscar(String campo, String valor) {
-        return super.listar(Caixa.class, campo, valor); 
+        return super.listar(Caixa.class, campo, valor);
     }
 
     public Caixa get(int id) {
-        return super.get(Caixa.class, id); 
+        return super.get(Caixa.class, id);
     }
-    
+
     public List<Caixa> listar() {
-        return super.listar(Caixa.class, "nome", ""); 
+        return super.listar(Caixa.class, "nome", "");
     }
 
     public Caixa acesso(String login, String senha) {
-        for (Caixa c : buscar("login", login))
-            if (c.getSenha().equals(senha))
+        for (Caixa c : buscar("login", login)) {
+            if (c.getSenha().equals(senha)) {
                 return c;
+            }
+        }
         return null;
     }
 }
