@@ -103,7 +103,7 @@ public class PainelView extends javax.swing.JFrame {
         jLabel2.setText("Caixa:");
 
         lblSenha.setFont(new java.awt.Font("Liberation Sans", 0, 200)); // NOI18N
-        lblSenha.setText("RP001");
+        lblSenha.setText("...");
 
         jLabel4.setFont(new java.awt.Font("Liberation Sans", 0, 48)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(102, 102, 102));
@@ -111,7 +111,7 @@ public class PainelView extends javax.swing.JFrame {
 
         lblCaixa.setFont(new java.awt.Font("Liberation Sans", 0, 200)); // NOI18N
         lblCaixa.setForeground(new java.awt.Color(0, 0, 255));
-        lblCaixa.setText("1");
+        lblCaixa.setText("0");
 
         lblUltimas.setFont(new java.awt.Font("Liberation Sans", 0, 60)); // NOI18N
         lblUltimas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

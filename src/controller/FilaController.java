@@ -28,6 +28,10 @@ public class FilaController extends Controller<Fila>{
         return super.listar(Fila.class, campo, valor); 
     }
 
+    public List<Fila> buscar(String campo, int valor) {
+        return super.listar(Fila.class, campo, valor); 
+    }
+
     public Fila get(int id) {
         return super.get(Fila.class, id); 
     }

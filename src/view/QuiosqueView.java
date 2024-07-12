@@ -5,7 +5,6 @@
 package view;
 
 import controller.FilaController;
-import controller.SenhaController;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -18,7 +17,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import model.Fila;
-import model.Senha;
 
 /**
  *
@@ -49,14 +47,11 @@ public class QuiosqueView extends javax.swing.JFrame {
             String v = i.getTipo().getNome();
             if (!a.contains(v)) {
                 JButton b = new JButton(v);
-                b.setFont(new Font("Arial", Font.PLAIN, 60));
+                b.setFont(new Font("Arial", Font.PLAIN, 100));
                 b.addActionListener((ActionEvent e) -> {
-                    Senha s = new SenhaController().gerar(i);
-                    String novaSenha = i.getPrefixoSenha() + s.getNumero();
-                    new NotificacaoView(novaSenha).setVisible(true);
-                    util.Impressao.imprimirSenha(s); // imprime na impressora padrão
+                    new PrioridadeView(i.getTipo()).setVisible(true);
                 });
-
+                
                 painel.setLayout(new GridLayout(4, 2, 20, 20));
                 painel.setBackground(Color.black); // background 
                 painel.add(b);

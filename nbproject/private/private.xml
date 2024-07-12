@@ -3,12 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/jpescola/NetBeansProjects/PuxaFila/src/view/AdminView.java</file>
-            <file>file:/home/jpescola/NetBeansProjects/PuxaFila/src/model/Senha.java</file>
             <file>file:/home/jpescola/NetBeansProjects/PuxaFila/src/view/QuiosqueView.java</file>
-            <file>file:/home/jpescola/NetBeansProjects/PuxaFila/src/view/AtendimentoView.java</file>
-            <file>file:/home/jpescola/NetBeansProjects/PuxaFila/src/view/NotificacaoView.java</file>
-            <file>file:/home/jpescola/NetBeansProjects/PuxaFila/src/util/Som.java</file>
+            <file>file:/home/jpescola/NetBeansProjects/PuxaFila/src/controller/FilaController.java</file>
+            <file>file:/home/jpescola/NetBeansProjects/PuxaFila/src/controller/Controller.java</file>
+            <file>file:/home/jpescola/NetBeansProjects/PuxaFila/src/view/PrioridadeView.java</file>
         </group>
     </open-files>
 </project-private>
