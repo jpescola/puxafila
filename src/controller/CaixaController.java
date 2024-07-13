@@ -16,6 +16,7 @@ public class CaixaController extends Controller<Caixa> {
 
     @Override
     public boolean salvar(Caixa t) {
+        t.setSenha(util.Senha.enc(t.getSenha()));
         return super.salvar(t);
     }
 
@@ -38,7 +39,7 @@ public class CaixaController extends Controller<Caixa> {
 
     public Caixa acesso(String login, String senha) {
         for (Caixa c : buscar("login", login)) {
-            if (c.getSenha().equals(senha)) {
+            if (util.Senha.verifyPassword(senha, c.getSenha())) {
                 return c;
             }
         }

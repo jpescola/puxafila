@@ -6,7 +6,6 @@ package view;
 
 import controller.CaixaController;
 import java.awt.Label;
-import model.Caixa;
 
 /**
  *
@@ -185,10 +184,8 @@ public class AdminView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                CaixaController con = new CaixaController();
-                if (con.listar().isEmpty()) { // é implantação
-                    con.salvar(new Caixa(0, "admin", "admin", "a d m i n", null)); // cria o admin
-                    new AdminView().setVisible(true);
+                if (new CaixaController().listar().isEmpty()) { // é implantação
+                    new AdminPwdView().setVisible(true);
                 } else {
                     new LoginView().setVisible(true);
                 }
