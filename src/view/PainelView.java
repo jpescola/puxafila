@@ -65,7 +65,7 @@ public class PainelView extends javax.swing.JFrame {
 
         String r = "<html>";
         senhas = con.listarUltimasChamadas();
-        for (Senha e : senhas.subList(0, 6)) {
+        for (Senha e : senhas.subList(0, (senhas.size() < 6) ? senhas.size() : 6)) {
             r += e.getFila().getPrefixoSenha() + e.getNumero() + " Caixa " + e.getCaixa().getNome() + "<br>";
         }
         lblUltimas.setText(r);

@@ -47,12 +47,22 @@ public abstract class Msg {
         JOptionPane.showMessageDialog(null, label, TITULO, JOptionPane.INFORMATION_MESSAGE);
     }
 
+    private static int confirm(String s) {
+        Object[] options = {"Sim", "Não"};
+        return JOptionPane.showOptionDialog(null, s, TITULO,
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null, //do not use a custom Icon
+                options, //the titles of buttons
+                options[0]);
+    }
+
     public static boolean confirmar(String s) {
-        return JOptionPane.showConfirmDialog(null, s, TITULO, JOptionPane.QUESTION_MESSAGE) == 1;
+        return confirm(s) == 1;
     }
 
     public static boolean confirmarAtendimento(String senha) {
-        return JOptionPane.showConfirmDialog(null, "Confirma atendimento da senha " + senha + "?", TITULO, JOptionPane.YES_NO_OPTION) == 0;
+        return confirm("Confirma atendimento da senha " + senha + "?") == 0;
     }
 
     public static void erroLogin() {

@@ -5,7 +5,6 @@
 package view;
 
 import controller.CaixaController;
-import java.awt.Label;
 
 /**
  *
@@ -145,13 +144,12 @@ public class AdminView extends javax.swing.JFrame {
 
     private void btnPainelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPainelActionPerformed
         new PainelView().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnPainelActionPerformed
 
     private void btnQuiosqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuiosqueActionPerformed
-        Label a = new Label("aaa");
-        QuiosqueView p = new QuiosqueView();
-        p.add(a);
-        p.setVisible(true);
+        new QuiosqueView().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnQuiosqueActionPerformed
 
     /**
